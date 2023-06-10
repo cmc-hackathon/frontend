@@ -6,7 +6,6 @@
  */
 
 import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -17,9 +16,6 @@ import {
   View,
 } from 'react-native';
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
 import {
   Colors,
   DebugInstructions,
@@ -27,24 +23,17 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import Home from './pages/Home';
-import BottomNavigation from './pages/BottomNavigation';
 
-const Stack = createNativeStackNavigator();
+export default function Home(): JSX.Element {
+  const isDarkMode = useColorScheme() === 'dark';
 
-function App(): JSX.Element {
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
+
   return (
-    <SafeAreaView style={{flex: 1}}>
-      {/* <Text>Hi</Text> */}
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName={'root'}>
-          <Stack.Screen
-            name="root"
-            component={BottomNavigation}
-            options={{headerShown: false}}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+    <SafeAreaView style={backgroundStyle}>
+      <Text>Home</Text>
     </SafeAreaView>
   );
 }
@@ -67,5 +56,3 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
 });
-
-export default App;
